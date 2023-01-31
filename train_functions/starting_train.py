@@ -37,7 +37,28 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
 
         # Loop over each batch in the dataset
         for batch in tqdm(train_loader):
-            # TODO: Backpropagation and gradient descent
+            # Backpropagation and gradient descent
+            labels, images = batch
+
+            # Use GPU
+            if torch.cuda.is_available(): # Check if GPU is available
+                device = torch.device('cuda')
+            else:
+                device = torch.device('cpu')
+
+            # Move the model to the GPU
+            model = model.to(device)
+            model
+
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outpus = model(images)
+            loss = loss_fn(outputs, labels)
+            loss.backward()       # Compute gradients
+            optimizer.step()      # Update all the weights with the gradients you just calculated
+            optimizer.zero_grad() # Clear gradients before next iteration
+ 
 
             # Periodically evaluate our model + log to Tensorboard
             if step % n_eval == 0:
@@ -49,6 +70,7 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
                 # Compute validation loss and accuracy.
                 # Log the results to Tensorboard.
                 # Don't forget to turn off gradient calculations!
+                print('Step:',step,'Epoch:', epoch, 'Loss:', loss.item())
                 evaluate(val_loader, model, loss_fn)
 
             step += 1
