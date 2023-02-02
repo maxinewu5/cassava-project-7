@@ -13,7 +13,10 @@ class StartingDataset(torch.utils.data.Dataset):
         self.file = file
         self.dataset = pd.read_csv(file)
         # define a transform from PIL image to Torch tensor
-        self.transform = transforms.Compose([transforms.PILToTensor()])
+        self.transform = transforms.Compose([
+            transforms.PILToTensor(),
+            transforms.ConvertImageDtype(torch.float)
+            ])
         pass
 
     def __getitem__(self, index):
@@ -21,10 +24,9 @@ class StartingDataset(torch.utils.data.Dataset):
             return
 
         image = self.dataset["image_id"][index]
-        pil_image = Image.open("../dataset/train_images/" + image)
+        pil_image = Image.open("./dataset/train_images/" + image)
         inputs = self.transform(pil_image)
         label = self.dataset["label"][index]
-
         return inputs, label
 
     def __len__(self):

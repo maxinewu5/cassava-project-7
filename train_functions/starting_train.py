@@ -38,22 +38,10 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
         # Loop over each batch in the dataset
         for batch in tqdm(train_loader):
             # Backpropagation and gradient descent
-            labels, images = batch
+            images, labels = batch
 
-            # Use GPU
-            if torch.cuda.is_available(): # Check if GPU is available
-                device = torch.device('cuda')
-            else:
-                device = torch.device('cpu')
-
-            # Move the model to the GPU
-            model = model.to(device)
-            model
-
-            images = images.to(device)
-            labels = labels.to(device)
-
-            outpus = model(images)
+            outputs = model(images)
+            #print("outputs:",outputs,"\nlabels:",labels)
             loss = loss_fn(outputs, labels)
             loss.backward()       # Compute gradients
             optimizer.step()      # Update all the weights with the gradients you just calculated
