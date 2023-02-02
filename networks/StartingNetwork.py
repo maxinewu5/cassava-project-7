@@ -10,7 +10,7 @@ class StartingNetwork(torch.nn.Module):
     def __init__(self):
         super().__init__()
         self.flatten = nn.Flatten()
-        self.fc = nn.Linear(3*600*800, 5)
+        self.fc = nn.Linear(3*600*600, 5)
         self.sigmoid = nn.Sigmoid()
 
 

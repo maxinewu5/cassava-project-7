@@ -14,6 +14,7 @@ class StartingDataset(torch.utils.data.Dataset):
         self.dataset = pd.read_csv(file)
         # define a transform from PIL image to Torch tensor
         self.transform = transforms.Compose([
+            transforms.CenterCrop(600),
             transforms.PILToTensor(),
             transforms.ConvertImageDtype(torch.float)
             ])
