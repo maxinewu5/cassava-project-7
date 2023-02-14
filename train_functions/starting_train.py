@@ -27,6 +27,8 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
         val_dataset, batch_size=batch_size, shuffle=True
     )
 
+    print("data loaded")
+
     # Initalize optimizer (for gradient descent) and loss function
     optimizer = optim.Adam(model.parameters())
     loss_fn = nn.CrossEntropyLoss()
@@ -37,22 +39,25 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
 
         # Loop over each batch in the dataset
         for batch in tqdm(train_loader):
-            # Backpropagation and gradient descent
-            images, labels = batch
+            inputs, labels = batch
 
-            outputs = model(images)
-            #print("outputs:",outputs,"\nlabels:",labels)
+            # TODO: Backpropagation and gradient descent
+            model.train()
+            outputs = model.forward(inputs)
             loss = loss_fn(outputs, labels)
-            loss.backward()       # Compute gradients
-            optimizer.step()      # Update all the weights with the gradients you just calculated
-            optimizer.zero_grad() # Clear gradients before next iteration
- 
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad() 
 
             # Periodically evaluate our model + log to Tensorboard
             if step % n_eval == 0:
                 # TODO:
                 # Compute training loss and accuracy.
                 # Log the results to Tensorboard.
+                print("Outputs:", outputs)
+                print("Labels:", labels)
+                accuracy = compute_accuracy(outputs, labels)
+                print("Accuracy:", accuracy)
 
                 # TODO:
                 # Compute validation loss and accuracy.
@@ -71,7 +76,7 @@ def compute_accuracy(outputs, labels):
     Computes the accuracy of a model's predictions.
 
     Example input:
-        outputs: [0.7, 0.9, 0.3, 0.2]
+        outputs: [0.7, 0.9, 0.3, 0a.2]
         labels:  [1, 1, 0, 1]
 
     Example output:

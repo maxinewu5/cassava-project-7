@@ -31,4 +31,5 @@ class StartingDataset(torch.utils.data.Dataset):
         return inputs, label
 
     def __len__(self):
-        return 10000
+        return 1000
+        # return len(self.dataset)
