@@ -17,7 +17,7 @@ def main():
     print("Batch size:", constants.BATCH_SIZE)
 
     # Initalize dataset and model. Then train the model!
-    #80% train, 20% validation
+    # 80% train, 20% validation
 
     full_dataset = StartingDataset('./dataset/train.csv')
     
@@ -26,7 +26,6 @@ def main():
     train_dataset, val_dataset = torch.utils.data.random_split(full_dataset, [train_size, test_size])
 
     model = StartingNetwork()
-    print("startingNetwork.py run")
     starting_train(
         train_dataset=train_dataset,
         val_dataset=val_dataset,

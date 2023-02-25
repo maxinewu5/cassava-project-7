@@ -3,6 +3,12 @@ import pandas as pd
 from PIL import Image
 import torchvision.transforms as transforms
 
+  # Use GPU
+if torch.cuda.is_available(): # Check if GPU is available
+    device = torch.device('cuda')
+else:
+    device = torch.device('cpu')
+
 class StartingDataset(torch.utils.data.Dataset):
     """
     Dataset that contains 100000 3x224x224 black images (all zeros).

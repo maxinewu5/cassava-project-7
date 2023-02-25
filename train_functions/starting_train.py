@@ -27,8 +27,6 @@ def starting_train(train_dataset, val_dataset, model, hyperparameters, n_eval):
         val_dataset, batch_size=batch_size, shuffle=True
     )
 
-    print("data loaded")
-
     # Initalize optimizer (for gradient descent) and loss function
     optimizer = optim.Adam(model.parameters())
     loss_fn = nn.CrossEntropyLoss()
@@ -83,7 +81,8 @@ def compute_accuracy(outputs, labels):
         0.75
     """
 
-    n_correct = (torch.round(outputs) == labels).sum().item()
+    predictions = torch.argmax(outputs, dim=1)
+    n_correct = (torch.round(predictions) == labels).sum().item()
     n_total = len(outputs)
     return n_correct / n_total
 
