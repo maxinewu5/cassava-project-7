@@ -93,4 +93,16 @@ def evaluate(val_loader, model, loss_fn):
 
     TODO!
     """
-    pass
+    
+    
+    for batch in tqdm(val_loader):
+      inputs, labels = batch
+
+      with torch.no_grad(): # IMPORTANT: turn off gradient computations
+        outputs = model(inputs)
+      
+      loss = loss_fn(outputs, labels)
+      accuracy = compute_accuracy(outputs, labels)
+
+      print("Loss:", loss)
+      print("Accuracy:", accuracy)
