@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="54c302d0-dc0c-4672-aea2-73c49328e2f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/StartingDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/StartingDataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/StartingNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/networks/StartingNetwork.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_functions/starting_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_functions/starting_train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
